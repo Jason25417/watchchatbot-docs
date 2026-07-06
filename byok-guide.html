@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WatchChatBot · 怎么获取 API key</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { font: -apple-system, "PingFang SC", system-ui, sans-serif; max-width: 720px;
+         margin: 0 auto; padding: 24px 18px 64px; line-height: 1.7; }
+  h1 { font-size: 24px; } h2 { font-size: 20px; margin-top: 40px; padding-top: 8px; }
+  .lead { color: #666; }
+  .toc { background: rgba(127,127,127,.12); border-radius: 12px; padding: 14px 18px; margin: 20px 0; }
+  .toc a { display: block; padding: 6px 0; text-decoration: none; }
+  .note { color: #8a6d00; background: rgba(255,204,0,.12); border-radius: 8px; padding: 8px 12px; font-size: 15px; }
+  ol { padding-left: 22px; } li { margin: 8px 0; }
+  code { background: rgba(127,127,127,.15); padding: 1px 5px; border-radius: 4px; font-size: 14px; }
+  footer { margin-top: 48px; color: #888; font-size: 14px; }
+  a { color: #0a84ff; }
+</style>
+</head>
+<body>
+  <h1>怎么获取并填入 API key</h1>
+  <p class="lead">WatchChatBot 用你自己的 API key 直连 AI(BYOK），不经我们的服务器。任选一家，几分钟搞定。key 只存在你手机和手表的钥匙串里。</p>
+
+  <nav class="toc">
+    <strong>选你要用的服务</strong>
+    <a href="#qwen">① 通义千问(国内首选，直连）</a>
+    <a href="#claude">② Claude（Anthropic）</a>
+    <a href="#generic">③ 其他（OpenAI 兼容：硅基流动 / DeepSeek / OpenRouter…）</a>
+  </nav>
+
+  <h2 id="qwen">① 通义千问（DashScope）</h2>
+  <p class="note">人在中国大陆首选：直连、不用代理、按量便宜。</p>
+  <ol>
+    <li>打开阿里云百炼控制台 <a href="https://bailian.console.aliyun.com">bailian.console.aliyun.com</a>，登录并开通「模型服务」。</li>
+    <li>在「API-KEY」页新建一个密钥，复制（形如 <code>sk-…</code>）。</li>
+    <li>回 App「API Keys」区，在「通义千问」那行粘贴、保存 —— 会自动校验，显示「已就绪」即可。</li>
+    <li>手表打开 WatchChatBot，回 iPhone 点「立即同步到手表」一次。</li>
+  </ol>
+
+  <h2 id="claude">② Claude（Anthropic）</h2>
+  <p class="note">中国大陆直连常被拦（HTTP 403）。若报 403：用代理，或在「高级 → 自定义端点」填一个 Anthropic 兼容中转端点。</p>
+  <ol>
+    <li>打开 <a href="https://console.anthropic.com">console.anthropic.com</a> 注册、充值（Claude 需预充额度）。</li>
+    <li>在「API Keys」创建密钥，复制（形如 <code>sk-ant-…</code>）。</li>
+    <li>回 App「API Keys」区，在「Anthropic (Claude)」那行粘贴、保存。</li>
+    <li>手表打开 App，iPhone 点「立即同步到手表」。</li>
+  </ol>
+
+  <h2 id="generic">③ 其他（OpenAI 兼容，通用）</h2>
+  <p class="note">硅基流动、DeepSeek、OpenRouter 等任何 OpenAI 兼容平台都能接。硅基流动国内直连、便宜，推荐新手。</p>
+  <ol>
+    <li>注册任一 OpenAI 兼容平台（如硅基流动 <a href="https://siliconflow.cn">siliconflow.cn</a>），拿到 API key。</li>
+    <li>App「API Keys」：在最接近的供应商行粘贴 key（用 OpenAI 通道就填 OpenAI 行）。</li>
+    <li>「高级 → 自定义端点」：填该平台完整的 chat 端点 URL（如 <code>https://api.siliconflow.cn/v1/chat/completions</code>）。</li>
+    <li>「默认模型 → 自定义模型」：把平台模型页的模型 ID 原样复制进去，设为默认。</li>
+    <li>保存后重新「测试」key，再同步到手表。</li>
+  </ol>
+
+  <footer>
+    隐私：API key 只存于你手机与手表的 Keychain，不经任何第三方服务器。
+    · <a href="https://github.com/Jason25417/WatchChatBot">WatchChatBot</a>
+  </footer>
+</body>
+</html>
