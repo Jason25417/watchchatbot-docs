@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WatchChatBot · 怎么获取 API key</title>
+<title>腕语 Sotto · 怎么接入 AI 服务</title>
 <style>
   :root { color-scheme: light dark; }
   body { font: -apple-system, "PingFang SC", system-ui, sans-serif; max-width: 720px;
@@ -14,52 +14,75 @@
   .toc a { display: block; padding: 6px 0; text-decoration: none; }
   .note { color: #8a6d00; background: rgba(255,204,0,.12); border-radius: 8px; padding: 8px 12px; font-size: 15px; }
   ol { padding-left: 22px; } li { margin: 8px 0; }
+  table { border-collapse: collapse; width: 100%; font-size: 15px; }
+  th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid rgba(127,127,127,.25); }
   code { background: rgba(127,127,127,.15); padding: 1px 5px; border-radius: 4px; font-size: 14px; }
   footer { margin-top: 48px; color: #888; font-size: 14px; }
   a { color: #0a84ff; }
 </style>
 </head>
 <body>
-  <h1>怎么获取并填入 API key</h1>
-  <p class="lead">WatchChatBot 用你自己的 API key 直连 AI(BYOK），不经我们的服务器。任选一家，几分钟搞定。key 只存在你手机和手表的钥匙串里。</p>
+  <h1>怎么接入 AI 服务（2.0 版）</h1>
+  <p class="lead">腕语用你自己的 API key 直连 AI（BYOK），不经任何中间服务器。2.0 起接入只需三步：<strong>选服务 → 贴 key → 同步手表</strong>。key 只存在你 iPhone 和手表的钥匙串里。</p>
 
   <nav class="toc">
-    <strong>选你要用的服务</strong>
-    <a href="#qwen">① 通义千问(国内首选，直连）</a>
-    <a href="#claude">② Claude（Anthropic）</a>
-    <a href="#generic">③ 其他（OpenAI 兼容：硅基流动 / DeepSeek / OpenRouter…）</a>
+    <strong>本页内容</strong>
+    <a href="#steps">① 三步接入（App 内操作）</a>
+    <a href="#keys">② 各家服务去哪拿 key</a>
+    <a href="#models">③ 模型三槽位：对话 / 视觉 / 语音转录</a>
+    <a href="#local">④ 本地模型（Ollama / LM Studio）</a>
+    <a href="#faq">⑤ 常见问题</a>
   </nav>
 
-  <h2 id="qwen">① 通义千问（DashScope）</h2>
-  <p class="note">人在中国大陆首选：直连、不用代理、按量便宜。</p>
+  <h2 id="steps">① 三步接入</h2>
   <ol>
-    <li>打开阿里云百炼控制台 <a href="https://bailian.console.aliyun.com">bailian.console.aliyun.com</a>，登录并开通「模型服务」。</li>
-    <li>在「API-KEY」页新建一个密钥，复制（形如 <code>sk-…</code>）。</li>
-    <li>回 App「API Keys」区，在「通义千问」那行粘贴、保存 —— 会自动校验，显示「已就绪」即可。</li>
-    <li>手表打开 WatchChatBot，回 iPhone 点「立即同步到手表」一次。</li>
+    <li><strong>选服务</strong>：打开 iPhone 端腕语 →「AI 服务」→「添加 AI 服务」（首次启动会自动弹出设置向导，一样的流程）。从预设列表里挑一家——国内推荐<strong>硅基流动</strong>（直连、模型全、按量便宜），也有通义千问、DeepSeek、智谱、Kimi、Claude、OpenAI、Gemini 等。</li>
+    <li><strong>贴 key</strong>：进入这家服务的页面，把 API key 粘贴进去、保存——App 会自动打一个零费用请求验证，显示「已就绪」即成。端点和常用模型都已预填好，<strong>不需要再填任何 URL 或模型 ID</strong>。</li>
+    <li><strong>同步手表</strong>：戴上手表打开腕语，回 iPhone 点「立即同步到手表」。完成，抬腕即问。</li>
+  </ol>
+  <p class="note">可以同时接入多家服务，互不冲突；每家页面里勾选的模型会出现在手表的模型切换列表里。</p>
+
+  <h2 id="keys">② 各家服务去哪拿 key</h2>
+  <table>
+    <tr><th>服务</th><th>拿 key 的地方</th><th>备注</th></tr>
+    <tr><td>硅基流动</td><td><a href="https://cloud.siliconflow.cn/account/ak">cloud.siliconflow.cn</a></td><td>国内直连，推荐新手；聊天/看图/语音转写一个 key 通吃</td></tr>
+    <tr><td>通义千问</td><td><a href="https://bailian.console.aliyun.com">阿里云百炼控制台</a></td><td>国内直连；开通「模型服务」后在 API-KEY 页新建</td></tr>
+    <tr><td>DeepSeek</td><td><a href="https://platform.deepseek.com/api_keys">platform.deepseek.com</a></td><td>国内直连</td></tr>
+    <tr><td>智谱 GLM</td><td><a href="https://open.bigmodel.cn/usercenter/apikeys">open.bigmodel.cn</a></td><td>国内直连</td></tr>
+    <tr><td>Kimi（月之暗面）</td><td><a href="https://platform.moonshot.cn/console/api-keys">platform.moonshot.cn</a></td><td>国内直连</td></tr>
+    <tr><td>火山方舟（豆包）</td><td><a href="https://console.volcengine.com/ark">console.volcengine.com</a></td><td>模型填控制台建的接入点 ID（ep-…）</td></tr>
+    <tr><td>Anthropic（Claude）</td><td><a href="https://console.anthropic.com/settings/keys">console.anthropic.com</a></td><td>需国际网络；要预充额度</td></tr>
+    <tr><td>OpenAI</td><td><a href="https://platform.openai.com/api-keys">platform.openai.com</a></td><td>需国际网络</td></tr>
+    <tr><td>Google Gemini</td><td><a href="https://aistudio.google.com/apikey">aistudio.google.com</a></td><td>需国际网络</td></tr>
+    <tr><td>OpenRouter</td><td><a href="https://openrouter.ai/keys">openrouter.ai</a></td><td>聚合平台；模型 ID 形如 vendor/model</td></tr>
+  </table>
+  <p>预设之外的平台：只要暴露 OpenAI 兼容接口（中转站、聚合平台、自建代理），走「添加 AI 服务 → 自定义」，填根 URL 即可。</p>
+
+  <h2 id="models">③ 模型三槽位</h2>
+  <ol>
+    <li><strong>对话模型</strong>：日常聊天用，手动选。</li>
+    <li><strong>视觉模型</strong>：带图片提问时自动切换。默认「自动」——对话模型自己会看图就直接用它，不会就用同一家服务里的视觉模型。</li>
+    <li><strong>语音转录模型</strong>：自研语音输入的转写。默认「自动」——用对话模型所在服务的转写模型（如硅基流动的 SenseVoice）。</li>
+  </ol>
+  <p class="note">「自动」会跟着你换对话模型联动变化；你手动选过就固定，不会被系统悄悄改。</p>
+
+  <h2 id="local">④ 本地模型（完全离线私有）</h2>
+  <ol>
+    <li>电脑上跑 <a href="https://ollama.com">Ollama</a> 或 <a href="https://lmstudio.ai">LM Studio</a>。</li>
+    <li>App「添加 AI 服务」选对应预设，把端点里的 IP 改成那台电脑的局域网地址（key 随便填一个占位）。</li>
+    <li>iPhone / 手表和电脑连同一个 WiFi 即可使用，数据不出内网。</li>
   </ol>
 
-  <h2 id="claude">② Claude（Anthropic）</h2>
-  <p class="note">中国大陆直连常被拦（HTTP 403）。若报 403：用代理，或在「高级 → 自定义端点」填一个 Anthropic 兼容中转端点。</p>
+  <h2 id="faq">⑤ 常见问题</h2>
   <ol>
-    <li>打开 <a href="https://console.anthropic.com">console.anthropic.com</a> 注册、充值（Claude 需预充额度）。</li>
-    <li>在「API Keys」创建密钥，复制（形如 <code>sk-ant-…</code>）。</li>
-    <li>回 App「API Keys」区，在「Anthropic (Claude)」那行粘贴、保存。</li>
-    <li>手表打开 App，iPhone 点「立即同步到手表」。</li>
-  </ol>
-
-  <h2 id="generic">③ 其他（OpenAI 兼容，通用）</h2>
-  <p class="note">硅基流动、DeepSeek、OpenRouter 等任何 OpenAI 兼容平台都能接。硅基流动国内直连、便宜，推荐新手。</p>
-  <ol>
-    <li>注册任一 OpenAI 兼容平台（如硅基流动 <a href="https://siliconflow.cn">siliconflow.cn</a>），拿到 API key。</li>
-    <li>App「API Keys」：在最接近的供应商行粘贴 key（用 OpenAI 通道就填 OpenAI 行）。</li>
-    <li>「高级 → 自定义端点」：填该平台完整的 chat 端点 URL（如 <code>https://api.siliconflow.cn/v1/chat/completions</code>）。</li>
-    <li>「默认模型 → 自定义模型」：把平台模型页的模型 ID 原样复制进去，设为默认。</li>
-    <li>保存后重新「测试」key，再同步到手表。</li>
+    <li><strong>保存 key 后显示「不可用 / HTTP 403」</strong>：403 常见于当前网络地区被该服务屏蔽（如国内直连 Anthropic/OpenAI 官方端点）——换国内直连的服务，或在服务页面把端点改成可用的中转地址。</li>
+    <li><strong>手表提示「未配 key」</strong>：手表打开腕语，iPhone 点一次「立即同步到手表」。</li>
+    <li><strong>模型列表太长</strong>：在服务页面把不常用的模型取消勾选，手表列表会跟着变短。</li>
   </ol>
 
   <footer>
-    隐私：API key 只存于你手机与手表的 Keychain，不经任何第三方服务器。
+    隐私：API key 只存于你 iPhone 与手表的 Keychain，不经任何第三方服务器。
+    · <a href="privacy.html">隐私政策</a>
     · <a href="https://github.com/Jason25417/WatchChatBot">WatchChatBot</a>
   </footer>
 </body>
