@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>WatchChatBot 隐私政策 / Privacy Policy</title>
+<title>腕语(WatchChatBot)隐私政策 / Privacy Policy</title>
 <style>
   :root { color-scheme: light dark; }
   body { font: -apple-system, "PingFang SC", system-ui, sans-serif; max-width: 720px;
@@ -15,63 +15,75 @@
 </style>
 </head>
 <body>
-  <h1>WatchChatBot 隐私政策</h1>
-  <p class="muted">最后更新:2026-07-06</p>
+  <h1>腕语(WatchChatBot)隐私政策</h1>
+  <p class="muted">最后更新:2026-10-01</p>
 
-  <p>WatchChatBot(下称"本 App")把你的隐私放在第一位。<strong>本 App 没有自有服务器,不收集、不上传、不追踪你的任何个人数据,也没有任何广告或分析 SDK。</strong></p>
+  <p>腕语(下称"本 App")没有账号系统,不追踪你,没有任何广告或分析 SDK。本 App 有两种用 AI 的方式,数据去向不同,下面分别说清楚。</p>
 
-  <h2>1. 我们收集什么</h2>
-  <p><strong>什么都不收集。</strong>本 App 没有后端服务器,无法也不会接收你的数据。所有数据只存在你自己的设备上。</p>
+  <h2>1. 两种用法,数据去哪</h2>
+  <p><strong>① 腕语云(免费,目前仅 TestFlight 测试版提供)</strong>:你问的文字、照片,以及开启"自研语音输入"时的录音,会经开发者运营的网关(Cloudflare Workers,<code>sotto-cloud.tusu-jason.workers.dev</code>)转发给 <strong>硅基流动(SiliconFlow)</strong> 生成回答或转成文字。<strong>第一次使用前,App 会说明这一点并征得你的明确同意</strong>;你可以随时在"AI 模型 → 腕语云 → 用量与许可"撤回,撤回后不再发出任何内容。硅基流动如何处理你的数据,受其隐私政策约束。</p>
+  <p><strong>② 自己的 key(BYOK)</strong>:本 App 用<strong>你自己配置的</strong>密钥,把提问<strong>直接</strong>发给<strong>你自己选择的</strong> AI 服务商(如通义千问、Anthropic,或任意 OpenAI 兼容服务)。这些请求<strong>不经过我们</strong>,受该服务商的隐私政策约束。开启"自研语音输入"时,录音同样直接发给你选的转写服务。</p>
+  <p>没有开启"自研语音输入"时,语音由 Apple 系统听写转成文字(由 Apple 处理,受 Apple 隐私政策约束)。</p>
 
-  <h2>2. 数据存在哪里</h2>
+  <h2>2. 腕语云网关保留什么</h2>
   <ul>
-    <li><strong>API 密钥</strong>:只存于你 iPhone 与 Apple Watch 各自的系统钥匙串(Keychain),不进任何文件、日志或服务器。</li>
-    <li><strong>对话记录与设置</strong>:只存于你设备本地。你可随时删除。</li>
-    <li><strong>诊断日志</strong>:仅记录事件名与状态码(如"发送""HTTP 403"),<strong>不含对话内容、不含密钥</strong>,只存本地;仅当你主动使用"反馈问题"时才会随你亲手发送的邮件带出。</li>
+    <li><strong>不保存任何内容</strong>:文字、照片、录音只做转发,不落盘、不进日志。</li>
+    <li><strong>匿名设备标识</strong>:App 在你设备上随机生成一个标识(只存本机钥匙串,不同步、不随备份迁移),随请求发出,用于按设备计算免费额度。网关只保存它的哈希值。手表与 iPhone 各算一台设备。</li>
+    <li><strong>用量计数</strong>(按设备哈希):每日次数 / token 数 / 转写秒数保留 7 天;设备登记(首见 / 末见日期)90 天未使用即删除;不含任何设备哈希的全站每日汇总保留 400 天。</li>
+    <li><strong>运行日志</strong>只有计数、状态码、国家 / 地区代码、设备哈希前 8 位;没有内容、没有 IP 地址、没有完整标识。</li>
   </ul>
 
-  <h2>3. 数据会发给谁(由你选择的第三方)</h2>
-  <p>本 App 是"自带密钥(BYOK)"工具:它用<strong>你自己配置的</strong>密钥,把你的提问直接发给<strong>你自己选择的</strong> AI 服务商(如通义千问、Anthropic、或任意 OpenAI 兼容服务)。这些请求<strong>不经过我们</strong>。你的数据如何被这些服务商处理,受其各自隐私政策约束,请自行查阅。</p>
-  <p>若你开启"自研语音输入",你的录音会上传到<strong>你自己填写的</strong>转写服务端点用于转成文字,同样不经过我们。</p>
+  <h2>3. 数据存在你设备上的</h2>
+  <ul>
+    <li><strong>API 密钥</strong>(只在 BYOK 时有):只存于你 iPhone 与 Apple Watch 各自的系统钥匙串,经 Apple 加密通道在两者间同步,不进任何文件、日志或服务器。腕语云不需要、也不会收到你的任何密钥。</li>
+    <li><strong>对话记录与设置</strong>:只存于你设备本地,可随时删除。</li>
+    <li><strong>诊断日志</strong>:只记录事件名与状态码,<strong>不含对话内容、不含密钥</strong>,只存本地;仅当你主动使用"反馈问题"并选择附带时才随你亲手发送的邮件带出。</li>
+  </ul>
 
   <h2>4. 权限</h2>
   <ul>
-    <li><strong>麦克风</strong>:仅在你开启"自研语音输入"并主动按下录音时使用,用于把语音转成文字发给你配置的转写服务。不开启则不采集音频。</li>
+    <li><strong>麦克风</strong>:仅在你开启"自研语音输入"并主动按下录音时使用。不开启则不采集音频。</li>
   </ul>
 
   <h2>5. 儿童</h2>
-  <p>本 App 不面向 13 岁以下儿童,也不刻意收集其信息(实际上我们不收集任何人的信息)。</p>
+  <p>本 App 不面向 13 岁以下儿童,也不刻意收集其信息。</p>
 
   <h2>6. 联系</h2>
   <p>有任何问题,邮件:<a href="mailto:endilog.25417@gmail.com">endilog.25417@gmail.com</a></p>
 
   <hr>
 
-  <h1>WatchChatBot Privacy Policy</h1>
-  <p class="muted">Last updated: 2026-07-06</p>
-  <p>WatchChatBot puts your privacy first. <strong>The app has no server of its own and does not collect, upload, or track any of your personal data. There are no ads and no analytics SDKs.</strong></p>
+  <h1>Sotto (WatchChatBot) Privacy Policy</h1>
+  <p class="muted">Last updated: 2026-10-01</p>
+  <p>Sotto has no accounts, does not track you, and contains no ads or analytics SDKs. There are two ways to use AI in the app, and your data goes to different places in each.</p>
 
-  <h2>1. What we collect</h2>
-  <p><strong>Nothing.</strong> The app has no backend and cannot receive your data. Everything stays on your own devices.</p>
+  <h2>1. Two ways, and where your data goes</h2>
+  <p><strong>① Sotto Cloud (free; currently TestFlight builds only)</strong>: the text and photos you ask about — and your recordings if you turn on custom voice input — are relayed through a gateway run by the developer (Cloudflare Workers, <code>sotto-cloud.tusu-jason.workers.dev</code>) to <strong>SiliconFlow</strong>, which generates the answer or transcript. <strong>Before your first use, the app explains this and asks for your explicit consent</strong>; you can withdraw it anytime under "AI Model → Sotto Cloud → Usage &amp; Consent", after which nothing more is sent. SiliconFlow's handling of your data is governed by its own privacy policy.</p>
+  <p><strong>② Your own key (BYOK)</strong>: the app uses <strong>your own key</strong> to send prompts <strong>directly</strong> to the <strong>AI provider you choose</strong>. These requests do not pass through us and are governed by that provider's policy. With custom voice input on, recordings also go directly to the transcription service you choose.</p>
+  <p>With custom voice input off, speech is transcribed by Apple's system dictation (handled by Apple under Apple's privacy policy).</p>
 
-  <h2>2. Where data lives</h2>
+  <h2>2. What the Sotto Cloud gateway keeps</h2>
   <ul>
-    <li><strong>API keys</strong>: stored only in the Keychain on your iPhone and Apple Watch — never in files, logs, or any server.</li>
-    <li><strong>Conversations and settings</strong>: stored only on your device; you can delete them anytime.</li>
-    <li><strong>Diagnostic logs</strong>: record only event names and status codes (never conversation content or keys), stored locally; they only leave your device if you choose to attach them to feedback email that you send yourself.</li>
+    <li><strong>No content</strong>: text, photos and audio are relayed only — never stored or logged.</li>
+    <li><strong>Anonymous device identifier</strong>: a random identifier generated on your device (kept in this device's Keychain only, not synced or migrated), sent with requests to apply per-device free quotas. The gateway stores only its hash. Your watch and iPhone count as two devices.</li>
+    <li><strong>Usage counters</strong> (by device hash): daily requests / tokens / transcription seconds are kept for 7 days; device registration (first / last seen dates) is deleted after 90 days without use; daily site-wide totals with no device hashes are kept for 400 days.</li>
+    <li><strong>Operational logs</strong> contain only counts, status codes, country/region codes and the first 8 characters of a device hash — no content, no IP addresses, no full identifiers.</li>
   </ul>
 
-  <h2>3. Who data is sent to (third parties you choose)</h2>
-  <p>This is a bring-your-own-key (BYOK) app: it uses <strong>your own key</strong> to send your prompts directly to the <strong>AI provider you choose</strong> (e.g. Qwen, Anthropic, or any OpenAI-compatible service). These requests do not pass through us. Their handling of your data is governed by their own privacy policies.</p>
-  <p>If you enable custom voice input, your audio is uploaded to the transcription endpoint <strong>you configure</strong>, again not through us.</p>
+  <h2>3. What stays on your devices</h2>
+  <ul>
+    <li><strong>API keys</strong> (BYOK only): stored only in the Keychain on your iPhone and Apple Watch, synced between them over Apple's encrypted channel; never in files, logs, or any server. Sotto Cloud neither needs nor receives any key.</li>
+    <li><strong>Conversations and settings</strong>: stored only on your device; delete them anytime.</li>
+    <li><strong>Diagnostic logs</strong>: event names and status codes only (never conversation content or keys), stored locally; they leave your device only if you attach them to feedback email you send yourself.</li>
+  </ul>
 
   <h2>4. Permissions</h2>
   <ul>
-    <li><strong>Microphone</strong>: used only when you enable custom voice input and actively record, to transcribe speech via the service you configure. If disabled, no audio is captured.</li>
+    <li><strong>Microphone</strong>: used only when you turn on custom voice input and actively record. Otherwise no audio is captured.</li>
   </ul>
 
   <h2>5. Children</h2>
-  <p>The app is not directed at children under 13 and does not knowingly collect their information (in fact we collect no one's information).</p>
+  <p>The app is not directed at children under 13 and does not knowingly collect their information.</p>
 
   <h2>6. Contact</h2>
   <p>Questions? Email <a href="mailto:endilog.25417@gmail.com">endilog.25417@gmail.com</a></p>
