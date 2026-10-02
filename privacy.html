@@ -30,17 +30,14 @@
   <ul>
     <li><strong>不保存任何内容</strong>:文字、照片、录音只做转发,不落盘、不进日志。</li>
     <li><strong>匿名设备标识</strong>:App 在你设备上随机生成一个标识(只存本机钥匙串,不同步、不随备份迁移),随请求发出,用于按设备计算免费额度。网关只保存它的哈希值。手表与 iPhone 各算一台设备。</li>
-    <li><strong>防刷核验(真实设备 + Apple 账户)</strong>:为了防止有人反复重装、换设备来刷免费额度,第一次用腕语云时 App 会把两样由 Apple 签发的凭证交给网关核验——<br>
-      · <strong>App Store 下载凭证</strong>(StoreKit AppTransaction):网关验证 Apple 的签名后,取出"这个 Apple 账户下载过本 App"的编号,<strong>只保存它的单向哈希</strong>,用来让同一个账户的用量在重装后接着算、记住是否领过新用户首日福利;<br>
-      · <strong>Apple 设备核验</strong>(DeviceCheck):网关拿这个一次性凭证去问 Apple"这台设备在腕语云登记过没有",并把它标记为已登记(Apple 只为每台设备、每个开发者存 2 个比特,不含任何身份信息)。<br>
-      我们<strong>不知道你的 Apple ID、姓名、邮箱或电话</strong>,也无法凭这些哈希认出你是谁。</li>
+    <li><strong>防刷核验</strong>:为防止反复重装或换设备刷取免费额度，App 会尝试向网关提供由 Apple 签发的 App Store 下载凭证和设备核验凭证。凭证是否可用，取决于设备、安装渠道及服务配置。网关对有效下载凭证验签后，只保留账户下载标识的单向哈希；在设备核验服务启用且可用时，还会向 Apple 查询和设置本 App 的设备登记状态。无法核验时按未核验设备额度处理，不授予已核验新用户福利。我们不会获得你的 Apple ID、姓名、邮箱或电话。</li>
     <li><strong>用量计数</strong>(按设备 / 账户哈希):每日次数 / token 数 / 转写秒数保留 7 天;设备登记与设备 → 账户哈希的绑定 90 天未使用即删除;账户哈希(首见日期、是否领过首日福利)400 天未使用即删除;不含任何哈希的全站每日汇总保留 400 天。</li>
     <li><strong>运行日志</strong>只有计数、状态码、国家 / 地区代码、设备哈希前 8 位;没有内容、没有 IP 地址、没有完整标识。</li>
   </ul>
 
   <h2>3. 数据存在你设备上的</h2>
   <ul>
-    <li><strong>API 密钥</strong>(只在 BYOK 时有):只存于你 iPhone 与 Apple Watch 各自的系统钥匙串,经 Apple 加密通道在两者间同步,不进任何文件、日志或服务器。腕语云不需要、也不会收到你的任何密钥。</li>
+    <li><strong>API 密钥</strong>(BYOK):API 密钥保存在 iPhone 与 Apple Watch 的系统钥匙串中，经 Apple 的加密设备间通道同步。调用 BYOK 服务时，密钥作为鉴权信息直接发给你选择的服务商；不会经过腕语云，不写入本 App 的文件或诊断日志。服务商如何处理鉴权信息，以其政策为准。</li>
     <li><strong>对话记录与设置</strong>:只存于你设备本地,可随时删除。</li>
     <li><strong>诊断日志</strong>:只记录事件名与状态码,<strong>不含对话内容、不含密钥</strong>,只存本地;仅当你主动使用"反馈问题"并选择附带时才随你亲手发送的邮件带出。</li>
   </ul>
@@ -72,17 +69,14 @@
   <ul>
     <li><strong>No content</strong>: text, photos and audio are relayed only — never stored or logged.</li>
     <li><strong>Anonymous device identifier</strong>: a random identifier generated on your device (kept in this device's Keychain only, not synced or migrated), sent with requests to apply per-device free quotas. The gateway stores only its hash. Your watch and iPhone count as two devices.</li>
-    <li><strong>Abuse protection (real device + Apple account)</strong>: to stop people from reinstalling or switching devices to farm the free allowance, on first use the app hands the gateway two credentials issued by Apple —<br>
-      · <strong>the App Store download record</strong> (StoreKit AppTransaction): after verifying Apple's signature, the gateway takes the ID meaning "this Apple account downloaded the app" and <strong>stores only a one-way hash of it</strong>, so the same account's usage carries over after a reinstall and we remember whether the new-user first-day bonus was used;<br>
-      · <strong>Apple device verification</strong> (DeviceCheck): the gateway uses this one-time token to ask Apple whether this device has registered with Sotto Cloud before, and marks it as registered (Apple keeps just 2 bits per device per developer, with no identity information).<br>
-      We <strong>never learn your Apple ID, name, email or phone number</strong>, and these hashes can't be used to identify you.</li>
+    <li><strong>Abuse protection</strong>: To discourage repeated reinstalls or device changes to obtain extra free usage, the app attempts to provide the gateway with Apple-issued download and device-verification credentials. Availability depends on the device, distribution channel and service configuration. After verifying a valid download record, the gateway keeps only a one-way hash of its account download identifier. When device verification is enabled and available, the gateway also queries and updates this app’s device-registration state with Apple. Unverified devices receive the unverified allowance and do not receive the verified new-user bonus. We do not receive your Apple ID, name, email or phone number.</li>
     <li><strong>Usage counters</strong> (by device / account hash): daily requests / tokens / transcription seconds are kept for 7 days; device registration and device → account-hash bindings are deleted after 90 days without use; account hashes (first-seen date, whether the first-day bonus was used) are deleted after 400 days without use; daily site-wide totals with no hashes are kept for 400 days.</li>
     <li><strong>Operational logs</strong> contain only counts, status codes, country/region codes and the first 8 characters of a device hash — no content, no IP addresses, no full identifiers.</li>
   </ul>
 
   <h2>3. What stays on your devices</h2>
   <ul>
-    <li><strong>API keys</strong> (BYOK only): stored only in the Keychain on your iPhone and Apple Watch, synced between them over Apple's encrypted channel; never in files, logs, or any server. Sotto Cloud neither needs nor receives any key.</li>
+    <li><strong>API keys</strong> (BYOK): API keys are stored in the system Keychain on your iPhone and Apple Watch and synced over Apple’s encrypted device-to-device channel. When you use a BYOK provider, the key is sent directly to that provider for authentication. It does not pass through Sotto Cloud and is not written to this app’s files or diagnostic logs. The provider’s handling of authentication data is governed by its policy.</li>
     <li><strong>Conversations and settings</strong>: stored only on your device; delete them anytime.</li>
     <li><strong>Diagnostic logs</strong>: event names and status codes only (never conversation content or keys), stored locally; they leave your device only if you attach them to feedback email you send yourself.</li>
   </ul>
