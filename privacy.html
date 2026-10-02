@@ -16,20 +16,25 @@
 </head>
 <body>
   <h1>腕语(WatchChatBot)隐私政策</h1>
-  <p class="muted">最后更新:2026-10-01</p>
+  <p class="muted">最后更新:2026-10-02(适用于 3.0 及以后版本)</p>
 
-  <p>腕语(下称"本 App")没有账号系统,不追踪你,没有任何广告或分析 SDK。本 App 有两种用 AI 的方式,数据去向不同,下面分别说清楚。</p>
+  <p>腕语(下称"本 App")没有账号系统,不追踪你,没有任何广告或分析 SDK。本 App 有三种用 AI 的方式,数据去向不同,下面分别说清楚。</p>
 
-  <h2>1. 两种用法,数据去哪</h2>
-  <p><strong>① 腕语云(免费,目前仅 TestFlight 测试版提供)</strong>:你问的文字、照片,以及开启"自研语音输入"时的录音,会经开发者运营的网关(Cloudflare Workers,<code>sotto-cloud.tusu-jason.workers.dev</code>)转发给 <strong>硅基流动(SiliconFlow)</strong> 生成回答或转成文字。<strong>第一次使用前,App 会说明这一点并征得你的明确同意</strong>;你可以随时在"AI 模型 → 腕语云 → 用量与许可"撤回,撤回后不再发出任何内容。硅基流动如何处理你的数据,受其隐私政策约束。</p>
+  <h2>1. 三种用法,数据去哪</h2>
+  <p><strong>① 腕语云(免费,所有用户可用)</strong>:你问的文字、照片,以及开启"自研语音输入"时的录音,会经开发者运营的网关(Cloudflare Workers,<code>sotto-cloud.tusu-jason.workers.dev</code>)转发给 <strong>硅基流动(SiliconFlow)</strong> 生成回答或转成文字。<strong>第一次使用前,App 会说明这一点并征得你的明确同意</strong>;你可以随时在"默认模型 → 管理模型条目 → 腕语云 → ⓘ"撤回,撤回后不再发出任何内容。硅基流动如何处理你的数据,受其隐私政策约束。</p>
   <p><strong>② 自己的 key(BYOK)</strong>:本 App 用<strong>你自己配置的</strong>密钥,把提问<strong>直接</strong>发给<strong>你自己选择的</strong> AI 服务商(如通义千问、Anthropic,或任意 OpenAI 兼容服务)。这些请求<strong>不经过我们</strong>,受该服务商的隐私政策约束。开启"自研语音输入"时,录音同样直接发给你选的转写服务。</p>
+  <p><strong>③ Apple 智能</strong>(iOS 27 / watchOS 27 起,支持的设备):提问由 Apple 的私有云计算(Private Cloud Compute)处理,不经过我们,Apple 不保存你的内容,受 Apple 隐私政策约束。</p>
   <p>没有开启"自研语音输入"时,语音由 Apple 系统听写转成文字(由 Apple 处理,受 Apple 隐私政策约束)。</p>
 
   <h2>2. 腕语云网关保留什么</h2>
   <ul>
     <li><strong>不保存任何内容</strong>:文字、照片、录音只做转发,不落盘、不进日志。</li>
     <li><strong>匿名设备标识</strong>:App 在你设备上随机生成一个标识(只存本机钥匙串,不同步、不随备份迁移),随请求发出,用于按设备计算免费额度。网关只保存它的哈希值。手表与 iPhone 各算一台设备。</li>
-    <li><strong>用量计数</strong>(按设备哈希):每日次数 / token 数 / 转写秒数保留 7 天;设备登记(首见 / 末见日期)90 天未使用即删除;不含任何设备哈希的全站每日汇总保留 400 天。</li>
+    <li><strong>防刷核验(真实设备 + Apple 账户)</strong>:为了防止有人反复重装、换设备来刷免费额度,第一次用腕语云时 App 会把两样由 Apple 签发的凭证交给网关核验——<br>
+      · <strong>App Store 下载凭证</strong>(StoreKit AppTransaction):网关验证 Apple 的签名后,取出"这个 Apple 账户下载过本 App"的编号,<strong>只保存它的单向哈希</strong>,用来让同一个账户的用量在重装后接着算、记住是否领过新用户首日福利;<br>
+      · <strong>Apple 设备核验</strong>(DeviceCheck):网关拿这个一次性凭证去问 Apple"这台设备在腕语云登记过没有",并把它标记为已登记(Apple 只为每台设备、每个开发者存 2 个比特,不含任何身份信息)。<br>
+      我们<strong>不知道你的 Apple ID、姓名、邮箱或电话</strong>,也无法凭这些哈希认出你是谁。</li>
+    <li><strong>用量计数</strong>(按设备 / 账户哈希):每日次数 / token 数 / 转写秒数保留 7 天;设备登记与设备 → 账户哈希的绑定 90 天未使用即删除;账户哈希(首见日期、是否领过首日福利)400 天未使用即删除;不含任何哈希的全站每日汇总保留 400 天。</li>
     <li><strong>运行日志</strong>只有计数、状态码、国家 / 地区代码、设备哈希前 8 位;没有内容、没有 IP 地址、没有完整标识。</li>
   </ul>
 
@@ -54,19 +59,24 @@
   <hr>
 
   <h1>Sotto (WatchChatBot) Privacy Policy</h1>
-  <p class="muted">Last updated: 2026-10-01</p>
-  <p>Sotto has no accounts, does not track you, and contains no ads or analytics SDKs. There are two ways to use AI in the app, and your data goes to different places in each.</p>
+  <p class="muted">Last updated: 2026-10-02 (applies to version 3.0 and later)</p>
+  <p>Sotto has no accounts, does not track you, and contains no ads or analytics SDKs. There are three ways to use AI in the app, and your data goes to different places in each.</p>
 
-  <h2>1. Two ways, and where your data goes</h2>
-  <p><strong>① Sotto Cloud (free; currently TestFlight builds only)</strong>: the text and photos you ask about — and your recordings if you turn on custom voice input — are relayed through a gateway run by the developer (Cloudflare Workers, <code>sotto-cloud.tusu-jason.workers.dev</code>) to <strong>SiliconFlow</strong>, which generates the answer or transcript. <strong>Before your first use, the app explains this and asks for your explicit consent</strong>; you can withdraw it anytime under "AI Model → Sotto Cloud → Usage &amp; Consent", after which nothing more is sent. SiliconFlow's handling of your data is governed by its own privacy policy.</p>
+  <h2>1. Three ways, and where your data goes</h2>
+  <p><strong>① Sotto Cloud (free, available to everyone)</strong>: the text and photos you ask about — and your recordings if you turn on custom voice input — are relayed through a gateway run by the developer (Cloudflare Workers, <code>sotto-cloud.tusu-jason.workers.dev</code>) to <strong>SiliconFlow</strong>, which generates the answer or transcript. <strong>Before your first use, the app explains this and asks for your explicit consent</strong>; you can withdraw it anytime under "Default model → Manage model entries → Sotto Cloud → ⓘ", after which nothing more is sent. SiliconFlow's handling of your data is governed by its own privacy policy.</p>
   <p><strong>② Your own key (BYOK)</strong>: the app uses <strong>your own key</strong> to send prompts <strong>directly</strong> to the <strong>AI provider you choose</strong>. These requests do not pass through us and are governed by that provider's policy. With custom voice input on, recordings also go directly to the transcription service you choose.</p>
+  <p><strong>③ Apple Intelligence</strong> (iOS 27 / watchOS 27 on supported devices): your prompts are processed by Apple's Private Cloud Compute — not through us; Apple doesn't keep your content, under Apple's privacy policy.</p>
   <p>With custom voice input off, speech is transcribed by Apple's system dictation (handled by Apple under Apple's privacy policy).</p>
 
   <h2>2. What the Sotto Cloud gateway keeps</h2>
   <ul>
     <li><strong>No content</strong>: text, photos and audio are relayed only — never stored or logged.</li>
     <li><strong>Anonymous device identifier</strong>: a random identifier generated on your device (kept in this device's Keychain only, not synced or migrated), sent with requests to apply per-device free quotas. The gateway stores only its hash. Your watch and iPhone count as two devices.</li>
-    <li><strong>Usage counters</strong> (by device hash): daily requests / tokens / transcription seconds are kept for 7 days; device registration (first / last seen dates) is deleted after 90 days without use; daily site-wide totals with no device hashes are kept for 400 days.</li>
+    <li><strong>Abuse protection (real device + Apple account)</strong>: to stop people from reinstalling or switching devices to farm the free allowance, on first use the app hands the gateway two credentials issued by Apple —<br>
+      · <strong>the App Store download record</strong> (StoreKit AppTransaction): after verifying Apple's signature, the gateway takes the ID meaning "this Apple account downloaded the app" and <strong>stores only a one-way hash of it</strong>, so the same account's usage carries over after a reinstall and we remember whether the new-user first-day bonus was used;<br>
+      · <strong>Apple device verification</strong> (DeviceCheck): the gateway uses this one-time token to ask Apple whether this device has registered with Sotto Cloud before, and marks it as registered (Apple keeps just 2 bits per device per developer, with no identity information).<br>
+      We <strong>never learn your Apple ID, name, email or phone number</strong>, and these hashes can't be used to identify you.</li>
+    <li><strong>Usage counters</strong> (by device / account hash): daily requests / tokens / transcription seconds are kept for 7 days; device registration and device → account-hash bindings are deleted after 90 days without use; account hashes (first-seen date, whether the first-day bonus was used) are deleted after 400 days without use; daily site-wide totals with no hashes are kept for 400 days.</li>
     <li><strong>Operational logs</strong> contain only counts, status codes, country/region codes and the first 8 characters of a device hash — no content, no IP addresses, no full identifiers.</li>
   </ul>
 
