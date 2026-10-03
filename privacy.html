@@ -16,15 +16,17 @@
 </head>
 <body>
   <h1>腕语(WatchChatBot)隐私政策</h1>
-  <p class="muted">最后更新:2026-10-02(适用于 3.0 及以后版本)</p>
+  <p class="muted">最后更新:2026-10-03(适用于 3.0 及以后版本)</p>
 
   <p>腕语(下称"本 App")没有账号系统,不追踪你,没有任何广告或分析 SDK。本 App 有三种用 AI 的方式,数据去向不同,下面分别说清楚。</p>
 
   <h2>1. 三种用法,数据去哪</h2>
-  <p><strong>① 腕语云(免费,所有用户可用)</strong>:你问的文字、照片,以及开启"自研语音输入"时的录音,会经开发者运营的网关(Cloudflare Workers,<code>sotto-cloud.tusu-jason.workers.dev</code>)转发给 <strong>硅基流动(SiliconFlow)</strong> 生成回答或转成文字。<strong>第一次使用前,App 会说明这一点并征得你的明确同意</strong>;你可以随时在"默认模型 → 管理模型条目 → 腕语云 → ⓘ"撤回,撤回后不再发出任何内容。硅基流动如何处理你的数据,受其隐私政策约束。</p>
+  <p><strong>① 腕语云(提供免费额度,仅在开放地区可用)</strong>:你问的文字、照片,以及开启"自研语音输入"时的录音,会经开发者运营的网关(Cloudflare Workers,<code>sotto-cloud.tusu-jason.workers.dev</code>)转发给 <strong>硅基流动(SiliconFlow)</strong> 生成回答或转成文字。<strong>第一次使用前,App 会说明这一点并征得你的明确同意</strong>;你可以随时在"默认模型 → 管理模型条目 → 腕语云 → ⓘ"撤回,撤回后不再发出任何内容。硅基流动如何处理你的数据,受其隐私政策约束。</p>
   <p><strong>② 自己的 key(BYOK)</strong>:本 App 用<strong>你自己配置的</strong>密钥,把提问<strong>直接</strong>发给<strong>你自己选择的</strong> AI 服务商(如通义千问、Anthropic,或任意 OpenAI 兼容服务)。这些请求<strong>不经过我们</strong>,受该服务商的隐私政策约束。开启"自研语音输入"时,录音同样直接发给你选的转写服务。</p>
   <p><strong>③ Apple 智能</strong>(iOS 27 / watchOS 27 起,支持的设备):提问由 Apple 的私有云计算(Private Cloud Compute)处理,不经过我们,Apple 不保存你的内容,受 Apple 隐私政策约束。</p>
   <p>没有开启"自研语音输入"时,语音由 Apple 系统听写转成文字(由 Apple 处理,受 Apple 隐私政策约束)。</p>
+
+  <p><strong>地区限制(3.0.1 起)</strong>:App 在本机读取 App Store 商店地区与设备地区设置，不使用 GPS，也不把这项地区判断上传给我们。中国大陆商店或设备地区设置为中国大陆时，仅允许直接使用 DeepSeek 官方文字 API；腕语云、其他服务商、Apple 智能、图片输入与自研语音输入不可用。无法确认商店地区时，先按限制模式处理。你需要自己的 DeepSeek key，费用由 DeepSeek 按其规则收取。系统听写仍由 Apple 处理。</p>
 
   <h2>2. 腕语云网关保留什么</h2>
   <ul>
@@ -56,14 +58,16 @@
   <hr>
 
   <h1>Sotto (WatchChatBot) Privacy Policy</h1>
-  <p class="muted">Last updated: 2026-10-02 (applies to version 3.0 and later)</p>
+  <p class="muted">Last updated: 2026-10-03 (applies to version 3.0 and later)</p>
   <p>Sotto has no accounts, does not track you, and contains no ads or analytics SDKs. There are three ways to use AI in the app, and your data goes to different places in each.</p>
 
   <h2>1. Three ways, and where your data goes</h2>
-  <p><strong>① Sotto Cloud (free, available to everyone)</strong>: the text and photos you ask about — and your recordings if you turn on custom voice input — are relayed through a gateway run by the developer (Cloudflare Workers, <code>sotto-cloud.tusu-jason.workers.dev</code>) to <strong>SiliconFlow</strong>, which generates the answer or transcript. <strong>Before your first use, the app explains this and asks for your explicit consent</strong>; you can withdraw it anytime under "Default model → Manage model entries → Sotto Cloud → ⓘ", after which nothing more is sent. SiliconFlow's handling of your data is governed by its own privacy policy.</p>
+  <p><strong>① Sotto Cloud (free allowance, available in supported regions)</strong>: the text and photos you ask about — and your recordings if you turn on custom voice input — are relayed through a gateway run by the developer (Cloudflare Workers, <code>sotto-cloud.tusu-jason.workers.dev</code>) to <strong>SiliconFlow</strong>, which generates the answer or transcript. <strong>Before your first use, the app explains this and asks for your explicit consent</strong>; you can withdraw it anytime under "Default model → Manage model entries → Sotto Cloud → ⓘ", after which nothing more is sent. SiliconFlow's handling of your data is governed by its own privacy policy.</p>
   <p><strong>② Your own key (BYOK)</strong>: the app uses <strong>your own key</strong> to send prompts <strong>directly</strong> to the <strong>AI provider you choose</strong>. These requests do not pass through us and are governed by that provider's policy. With custom voice input on, recordings also go directly to the transcription service you choose.</p>
   <p><strong>③ Apple Intelligence</strong> (iOS 27 / watchOS 27 on supported devices): your prompts are processed by Apple's Private Cloud Compute — not through us; Apple doesn't keep your content, under Apple's privacy policy.</p>
   <p>With custom voice input off, speech is transcribed by Apple's system dictation (handled by Apple under Apple's privacy policy).</p>
+
+  <p><strong>Regional restrictions (from version 3.0.1)</strong>: The app reads the App Store storefront and device region settings locally. It does not use GPS or upload this regional decision to us. For the mainland China storefront or a device set to mainland China, only the official DeepSeek text API is available, accessed directly. Sotto Cloud, other providers, Apple Intelligence, image input and custom voice input are unavailable. An unknown storefront initially uses the restricted mode. You need your own DeepSeek key, and DeepSeek charges according to its own terms. System dictation is still handled by Apple.</p>
 
   <h2>2. What the Sotto Cloud gateway keeps</h2>
   <ul>
